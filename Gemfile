@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 gem 'rails', '4.2.0'
 
 gem 'sass-rails', '~> 5.0'
@@ -15,9 +14,11 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'sqlite3'
+  gem 'thin'
 end
 
 group :production do
   gem 'rails_12factor'
   gem 'pg'
+  gem 'puma'
 end
