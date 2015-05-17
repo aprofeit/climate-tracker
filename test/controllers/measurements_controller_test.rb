@@ -1,8 +1,14 @@
 require 'test_helper'
 
 class MeasurementsControllerTest < ActionController::TestCase
-  test 'get index' do
-    get :index
+  test 'get html index' do
+    get :index, format: :html
+
+    assert_response :ok
+  end
+
+  test 'get json index' do
+    get :index, format: :json
 
     assert_equal Measurement.count, parsed_response['measurements'].size
 

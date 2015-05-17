@@ -15,6 +15,7 @@ group :development, :test do
   gem 'spring'
   gem 'sqlite3'
   gem 'thin'
+  gem 'quiet_assets'
 end
 
 group :production do

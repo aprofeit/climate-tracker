@@ -2,7 +2,17 @@ class MeasurementsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    render json: { measurements: Measurement.order(id: :desc).limit(100).reverse }
+    respond_to do |f|
+      f.html
+      f.json do
+        measurements = Measurement.order(id: :desc).limit(100).reverse
+        render json: {
+          labels: measurements.map(&:created_at),
+          temperatures: measurements.map(&:temperature),
+          humidities: measurements.map(&:humidity)
+        }
+      end
+    end
   end
 
   def create
