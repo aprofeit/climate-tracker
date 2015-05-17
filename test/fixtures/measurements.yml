@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  humidity: 30.3
+  temperature: 25.4
+
+two:
+  humidity: 30.4
+  temperature: 25.4
+
+three:
+  humidity: 30.4
+  temperature: 25.5
