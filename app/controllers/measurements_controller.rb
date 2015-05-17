@@ -2,7 +2,7 @@ class MeasurementsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    render json: { measurements: Measurement.all }
+    render json: { measurements: Measurement.order(id: :desc).limit(100) }
   end
 
   def create
