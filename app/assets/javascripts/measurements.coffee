@@ -1,5 +1,6 @@
 $ ->
-  ctx = $('.measurements_chart').get(0).getContext('2d')
+  $chart = $('.measurements_chart')
+  ctx = $chart.get(0).getContext('2d')
 
   $.get '/measurements.json', (response) ->
     data = {
@@ -16,4 +17,4 @@ $ ->
       ]
     }
 
-    chart = new Chart(ctx).Line(data)
+    chart = new Chart(ctx).Line(data, responsive: true)
