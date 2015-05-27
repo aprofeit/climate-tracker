@@ -9,7 +9,7 @@ $ ->
         { name: 'Temperature', color: palette.color(), data: response.temperatures }
       ]
       renderer: 'line'
-      height: window.innerHeight - 100
+      height: window.innerHeight - 145
       min: 'auto'
 
     hover = new Rickshaw.Graph.HoverDetail
