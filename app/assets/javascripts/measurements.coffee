@@ -1,32 +1,20 @@
+palette = new Rickshaw.Color.Palette(scheme: 'colorwheel')
+
 $ ->
-  $chart = $('.measurements_chart')
-  ctx = $chart.get(0).getContext('2d')
-
   $.get '/measurements.json', (response) ->
-    data = {
-      labels: response.labels,
-      datasets: [
-        {
-          label: 'Humidity',
-          fillColor: 'rgba(220,220,220,0.2)',
-          strokeColor: 'rgba(220,220,220,1)',
-          pointColor: 'rgba(220,220,220,1)',
-          pointStrokeColor: '#fff',
-          pointHighlightFill: '#fff',
-          pointHighlightStroke: 'rgba(220,220,220,1)',
-          data: response.humidities
-        },
-        {
-          label: 'Temperature',
-          fillColor: 'rgba(151,187,205,0.2)',
-          strokeColor: 'rgba(151,187,205,1)',
-          pointColor: 'rgba(151,187,205,1)',
-          pointStrokeColor: '#fff',
-          pointHighlightFill: '#fff',
-          pointHighlightStroke: 'rgba(151,187,205,1)',
-          data: response.temperatures
-        }
+    graph = new Rickshaw.Graph
+      element: $('.measurements-graph')[0]
+      series: [
+        { name: 'Humidity', color: palette.color(), data: response.humidities },
+        { name: 'Temperature', color: palette.color(), data: response.temperatures }
       ]
-    }
+      renderer: 'line'
+      height: window.innerHeight - 100
+      min: 'auto'
 
-    chart = new Chart(ctx).Line(data, responsive: true)
+    hover = new Rickshaw.Graph.HoverDetail(graph: graph)
+    axes = new Rickshaw.Graph.Axis.Time(graph: graph)
+    y_axis = new Rickshaw.Graph.Axis.Y(graph: graph, element: $('.y-axis')[0], orientation: 'left', tickFormat: Rickshaw.Fixtures.Number.formatKMBT)
+
+    graph.render()
+
